@@ -1,9 +1,9 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Login from './Page/Login/LoginPage'
-import Users from './Page/Users/user-list/UserListPage'
-import UserRegist from './Page/Users/user-regist/UserRegistPage'
-import Sidebar from './Component/Sidebar'
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Login from "./Page/Login/LoginPage";
+import Users from "./Page/Users/user-list/UserListPage";
+import UserRegist from "./Page/Users/user-regist/UserRegistPage";
+import Sidebar from "./Component/Sidebar";
 function App() {
   return (
     <Router>
@@ -18,7 +18,6 @@ function App() {
           <Route path="/product" render={() => <div>Product</div>} />
         </Routes>
       </div>
-      
     </Router>
   );
 }
