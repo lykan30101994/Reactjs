@@ -7,7 +7,7 @@ import TableComponent from "../../../../Component/TableComponent";
 import PaginationComponent from "../../../../Component/Pagination";
 import DeleteConfirmationModal from "./DeleteConfirmationModal";
 
-const Body = ({ users }) => {
+const Body = ({ users, onHandleDeleteUser }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [showModal, setShowModal] = useState(false);
   const [showModalDetail, setShowModalDetail] = useState(false);
@@ -55,7 +55,6 @@ const Body = ({ users }) => {
       setUserToDelete(row);
       setShowModal(true);
     } else if (action.label === "Details") {
-      // Redirect to details page
       setUserToDetail(row);
       setShowModalDetail(true);
     }
@@ -73,7 +72,7 @@ const Body = ({ users }) => {
       console.log(response);
       if (response.ok) {
         setShowModal(false);
-        console.log(showModal);
+        onHandleDeleteUser(userToDelete.id)
         setUserToDelete(null);
       } else {
         console.error("Failed to delete user");

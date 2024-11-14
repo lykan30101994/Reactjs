@@ -1,46 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Form, Button, Card, Row, Col } from "react-bootstrap";
 import { FaSearch } from "react-icons/fa";
 
 const Header = ({ onSearchResults }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await fetch("http://localhost:5000/users");
-        if (response.ok) {
-          const data = await response.json();
-          onSearchResults(data);
-        } else {
-          console.error("Failed to fetch users");
-        }
-      } catch (error) {
-        console.error("Error fetching users:", error);
-      }
-    };
 
-    fetchUsers();
-  }, [onSearchResults]);
   const handleSearch = async () => {
     try {
-      const queryParams = new URLSearchParams();
-      if (name) queryParams.append("name", name);
-      if (email) queryParams.append("email", email);
-
-      const response = await fetch(
-        `http://localhost:5000/users?${queryParams.toString()}`
-      );
+    const queryParams = buildQueryParams({ name, email });
+    const response = await fetch(`http://localhost:5000/users?${queryParams}`);
       if (response.ok) {
         const data = await response.json();
         onSearchResults(data);
-      } else {
-        console.error("Failed to fetch search results");
       }
     } catch (error) {
-      console.error("Error fetching search results:", error);
+      console.log(error);
     }
   };
+
+  const buildQueryParams = (params) => {
+    return new URLSearchParams(
+      Object.entries(params).filter(([key, value]) => value)
+    ).toString();
+  }
 
   return (
     <div className="header mb-4">
