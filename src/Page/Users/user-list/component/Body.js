@@ -1,24 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { Button, Card } from "react-bootstrap";
+import React, { useState } from "react";
+import { Button, Card, Modal } from "react-bootstrap";
 import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import UsersData from "../../../../Mock/User.json";
 import { paginate } from "../../../../Utils/paginationUtils";
 import TableComponent from "../../../../Component/TableComponent";
 import PaginationComponent from "../../../../Component/Pagination";
 import DeleteConfirmationModal from "./DeleteConfirmationModal";
 
-const Body = () => {
-  const [users, setUsers] = useState([]);
+const Body = ({ users }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [showModal, setShowModal] = useState(false);
+  const [showModalDetail, setShowModalDetail] = useState(false);
   const [userToDelete, setUserToDelete] = useState(null);
+  const [userToDetail, setUserToDetail] = useState(null);
   const recordsPerPage = 5;
   const navigate = useNavigate();
-
-  useEffect(() => {
-    setUsers(UsersData);
-  }, []);
 
   const { currentRecords, totalPages } = paginate(
     users,
@@ -48,30 +44,52 @@ const Body = () => {
     { label: "Delete", variant: "danger", icon: <FaTrash /> },
   ];
 
+  // Handle page change for pagination
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
+  // Handle action click (View/Edit/Delete)
   const handleActionClick = (action, row) => {
     if (action.label === "Delete") {
       setUserToDelete(row);
       setShowModal(true);
+    } else if (action.label === "Details") {
+      // Redirect to details page
+      setUserToDetail(row);
+      setShowModalDetail(true);
     }
   };
 
-  const handleDelete = () => {
-    setUsers((prevUsers) =>
-      prevUsers.filter((user) => user.id !== userToDelete.id)
-    );
-    setShowModal(false);
-    setUserToDelete(null);
+  // Handle delete action
+  const handleDelete = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/users/${userToDelete.id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      console.log(response);
+      if (response.ok) {
+        setShowModal(false);
+        console.log(showModal);
+        setUserToDelete(null);
+      } else {
+        console.error("Failed to delete user");
+      }
+    } catch (error) {
+      console.error("Error deleting user:", error);
+    }
   };
 
+  // Close the modal
   const handleCloseModal = () => {
     setShowModal(false);
     setUserToDelete(null);
   };
 
+  // Navigate to create new user page
   const handleCreateNewUser = () => {
     navigate("/create-user");
   };
@@ -82,7 +100,9 @@ const Body = () => {
         <Card.Header>
           <div className="d-flex justify-content-between align-items-center table-container">
             <h5>Users List</h5>
-            <Button variant="primary" onClick={handleCreateNewUser}>Create New</Button>
+            <Button variant="primary" onClick={handleCreateNewUser}>
+              Create New
+            </Button>
           </div>
         </Card.Header>
         <Card.Body>
@@ -106,6 +126,63 @@ const Body = () => {
         userToDelete={userToDelete}
         onDelete={handleDelete}
       />
+      {/* User details modal */}
+      <Modal
+        show={showModalDetail}
+        onHide={() => setShowModalDetail(false)}
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>User Details</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {userToDetail && (
+            <div className="user-detail">
+              <div className="user-avatar">
+                <img
+                  src={userToDetail.image}
+                  alt={userToDetail.name}
+                  style={{
+                    width: "100px",
+                    height: "100px",
+                    borderRadius: "50%",
+                    objectFit: "cover",
+                  }}
+                />
+              </div>
+              <div className="user-info">
+                <h4>{userToDetail.name}</h4>
+                <p>
+                  <strong>Email:</strong> {userToDetail.email}
+                </p>
+                <p>
+                  <strong>Full Name:</strong> {userToDetail.fullName}
+                </p>
+                <p>
+                  <strong>Phone:</strong> {userToDetail.phone}
+                </p>
+                <p>
+                  <strong>Address:</strong> {userToDetail.address}
+                </p>
+                <p>
+                  <strong>Date of Birth:</strong> {userToDetail.dateOfBirth}
+                </p>
+                <p>
+                  <strong>Role:</strong> {userToDetail.role}
+                </p>
+                <p>
+                  <strong>Interest:</strong> {userToDetail.interest}
+                </p>
+              </div>
+            </div>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModalDetail(false)}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

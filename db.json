@@ -1,0 +1,17 @@
+{
+  "users": [
+    {
+      "id": "3f02",
+      "name": "nhanht01",
+      "email": "1@gmail.com",
+      "password": "11111111111",
+      "fullName": "111111111111111",
+      "phone": "111111",
+      "address": "11111111111111111111",
+      "dateOfBirth": "2024-11-14",
+      "role": "user",
+      "interest": "1111111111111111",
+      "image": "blob:http://localhost:3000/0d7b50f8-3a40-46e3-9a95-5e049f3eb2f0"
+    }
+  ]
+}

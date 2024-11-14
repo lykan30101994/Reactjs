@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, Modal, Card, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-const CreateUser = ({ onSave }) => {
+const CreateUser = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -45,7 +45,7 @@ const CreateUser = ({ onSave }) => {
 
   const handleConfirmSave = (confirm) => {
     if (confirm) {
-      onSave({
+      const newUser = {
         name,
         email,
         password,
@@ -56,11 +56,30 @@ const CreateUser = ({ onSave }) => {
         role,
         interest,
         image
+      };
+
+      fetch('http://localhost:5000/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newUser)
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log("User created:", data);
+        navigate("/users");
+      })
+      .catch(error => {
+        console.error("Error creating user:", error);
       });
-      navigate("/users");
     }
     setShowModal(false);
   };
+
+  const handleBack = () => {
+    navigate("/users");
+  }
 
   return (
     <div>
@@ -248,8 +267,11 @@ const CreateUser = ({ onSave }) => {
             </Row>
 
             <div className="d-flex justify-content-center">
-              <Button variant="primary" onClick={handleSave} className="px-4 py-2">
+              <Button variant="primary" onClick={handleSave} className="px-4 py-2 me-3">
                 Save
+              </Button>
+              <Button variant="secondary" onClick={handleBack} className="px-4 py-2">
+                Back
               </Button>
             </div>
           </Form>
