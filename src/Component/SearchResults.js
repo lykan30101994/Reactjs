@@ -14,7 +14,7 @@ const SearchResults = ({ users, onHandleDeleteUser }) => {
   const [showModalDetail, setShowModalDetail] = useState(false);
   const [userToDelete, setUserToDelete] = useState(null);
   const [userToDetail, setUserToDetail] = useState(null);
-  const recordsPerPage = 5;
+  const recordsPerPage = 10;
   const navigate = useNavigate();
 
   const { currentRecords, totalPages } = paginate(
@@ -96,7 +96,7 @@ const SearchResults = ({ users, onHandleDeleteUser }) => {
       <Card>
         <Card.Header>
           <div className="d-flex justify-content-between align-items-center table-container">
-            <h5>Users List</h5>
+            <h5>Search results</h5>
             <Button variant="primary" onClick={handleCreateNewUser}>
               Create New
             </Button>

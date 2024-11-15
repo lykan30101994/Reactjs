@@ -28,7 +28,8 @@ const Search = ({ onSearchResults }) => {
   return (
     <div className="header mb-4">
       <Card>
-        <Card.Header>List</Card.Header>
+        <Card.Header>
+        <h5 className="font-weight-bold">Search conditions</h5></Card.Header>
         <Card.Body>
           <Row className="d-flex align-items-center">
             {/* Column cho Name Search */}

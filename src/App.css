@@ -13,4 +13,11 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
-  
+
+  .main {
+    margin-left: 250px;
+    padding: 20px;
+    background-color: #fff;
+    z-index: 1;
+    overflow-y: auto;
+  }

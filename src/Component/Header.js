@@ -1,41 +1,29 @@
-// components/Header.js
-import React, { useState } from 'react';
+import React from 'react';
+import { useLocation } from 'react-router-dom';
+import '../styles/common/Header.css';  // Tạo file CSS riêng cho header nếu cần
 
-const Header = ({ onSearch }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+const Header = () => {
+  const location = useLocation();
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    onSearch(searchTerm); // Gửi từ khóa tìm kiếm lên cha
+  // Lấy tên màn hình từ URL, hoặc bạn có thể dùng logic khác tùy vào route
+  const getTitle = () => {
+    switch(location.pathname) {
+      case '/users':
+        return 'User List';
+      case '/users/register':
+        return 'User Registration';
+      case '/category':
+        return 'Category List';
+      case '/product':
+        return 'Product List';
+      default:
+        return 'Home';  // Mặc định
+    }
   };
 
   return (
-    <div className="d-flex justify-content-between align-items-center mb-4">
-      <form onSubmit={handleSearch} className="d-flex">
-        <input 
-          type="text" 
-          placeholder="Search users..." 
-          className="form-control" 
-          value={searchTerm} 
-          onChange={(e) => setSearchTerm(e.target.value)} 
-        />
-        <input 
-          type="text" 
-          placeholder="Search users..." 
-          className="form-control" 
-          value={searchTerm} 
-          onChange={(e) => setSearchTerm(e.target.value)} 
-        />
-        <input 
-          type="text" 
-          placeholder="Search users..." 
-          className="form-control" 
-          value={searchTerm} 
-          onChange={(e) => setSearchTerm(e.target.value)} 
-        />
-        <button type="submit" className="btn btn-primary ml-2">Search</button>
-      </form>
-      
+    <div className="breadcrumb">
+      <h1>{getTitle()}</h1>
     </div>
   );
 };

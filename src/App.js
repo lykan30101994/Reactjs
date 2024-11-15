@@ -4,7 +4,6 @@ import Login from "./pages/Login/LoginPage";
 import UserListPage from "./pages/Users/UserListPage";
 import UserCreatePage from "./pages/Users/UserCreatePage";
 import Sidebar from "./component/Sidebar";
-import { Container } from "react-bootstrap";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
 
@@ -13,11 +12,13 @@ function App() {
     <Router>
       <div>
         <Sidebar />
+          <Header />
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/users" element={<UserListPage />} />
             <Route path="/create-user" element={<UserCreatePage />} />
           </Routes>
+          <Footer />
       </div>
     </Router>
   );
