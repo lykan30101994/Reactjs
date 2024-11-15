@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Button, Card, Row, Col } from "react-bootstrap";
 import { FaSearch } from "react-icons/fa";
 
-const Header = ({ onSearchResults }) => {
+const Search = ({ onSearchResults }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
@@ -64,4 +64,4 @@ const Header = ({ onSearchResults }) => {
   );
 };
 
-export default Header;
+export default Search;

@@ -1,16 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
-import Header from "./component/Header"; // Import Header
-import Body from "./component/Body"; // Import Body
-import Footer from "./component/Footer"; // Import Footer
-import "./UserList.css";
-import "../../../App.css"
-import { getApi } from "../../../Utils/callApi";
+import Search from "../../component/Search";
+import SearchResults from "../../component/SearchResults";
+import "../../styles/Users/UserListPage.css";
+import "../../App.css"
+import { getApi } from "../../services/api";
 
 
-function Users() {
+function UserListPage() {
   const [searchResults, setSearchResults] = useState([]);
   const hasFetched = useRef(false);
-
+ 
   useEffect(() => {
     fetchUsers();
   }, []);
@@ -20,7 +19,9 @@ function Users() {
       if(hasFetched.current) return;
       hasFetched.current  = true
       const response = await getApi("http://localhost:5000/users");
+      console.log(response)
       if (response.length > 0) {
+        
         setSearchResults(response);
       }
     } catch (error) {
@@ -40,12 +41,11 @@ function Users() {
   return (
     <div>
       <div className="main">
-        <Header onSearchResults={handleSearchResults} />
-        <Body users={searchResults} onHandleDeleteUser={handleDeleteUser} />
-        <Footer />
+        <Search onSearch={handleSearchResults} />
+        <SearchResults users={searchResults} onHandleDeleteUser={handleDeleteUser}/>
       </div>
     </div>
   );
 }
 
-export default Users;
+export default UserListPage;

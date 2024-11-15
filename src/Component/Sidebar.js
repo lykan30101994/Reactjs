@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Nav } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { FaUsers, FaClipboardList, FaUserPlus, FaCog, FaProductHunt } from 'react-icons/fa'
-import './Sidebar.css'
+import '../styles/common/Sidebar.css'
 
 const Sidebar = () => {
   // State để quản lý việc mở/đóng sub-menu

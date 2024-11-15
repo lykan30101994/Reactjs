@@ -1,6 +1,6 @@
 import { Modal, Button } from "react-bootstrap";
 
-const DeleteConfirmationModal = ({ show, onHide, userToDelete, onDelete }) => {
+const DeleteModal = ({ show, onHide, userToDelete, onDelete }) => {
   return (
     <Modal show={show} onHide={onHide}>
       <Modal.Header closeButton>
@@ -22,4 +22,4 @@ const DeleteConfirmationModal = ({ show, onHide, userToDelete, onDelete }) => {
   );
 };
 
-export default DeleteConfirmationModal;
+export default DeleteModal;

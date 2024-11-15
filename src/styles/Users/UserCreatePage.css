@@ -1,0 +1,61 @@
+.main {
+    margin-left: 250px;
+    padding: 20px;
+    background-color: #fff;
+  }
+  
+  .create-user-form .card {
+    background-color: #ffffff;
+    border: none;
+  }
+  
+  .create-user-form .card-body {
+    padding: 2rem;
+  }
+  
+  .create-user-form h3 {
+    color: #495057;
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+  
+  .create-user-form .form-control {
+    border-radius: 10px;
+  }
+  
+  .create-user-form button {
+    font-size: 1rem;
+    padding: 0.5rem 2rem;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+  
+  .create-user-form button:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+  
+  .create-user-form .modal-header {
+    background-color: #f1f1f1;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .create-user-form .modal-footer {
+    border-top: 1px solid #ddd;
+  }
+  
+  .create-user-form .modal-title {
+    color: #333;
+  }
+  
+  .create-user-form .modal-body {
+    color: #555;
+  }
+  
+  .create-user-form img {
+    border-radius: 50%;
+    object-fit: cover;
+    max-width: 100px;
+    max-height: 100px;
+  }
+  

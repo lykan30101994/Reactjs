@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { paginate } from "../../../../Utils/paginationUtils";
-import TableComponent from "../../../../Component/TableComponent";
-import PaginationComponent from "../../../../Component/Pagination";
-import DeleteConfirmationModal from "./DeleteConfirmationModal";
-import DetailModal from "./DetailModal";
+import { paginate } from "../utils/paginationUtils.js";
+import TableComponent from "./TableComponent.js";
+import PaginationComponent from "./Pagination.js";
+import DeleteModal from "./common/DeleteModal";
+import DetailModal from "./common/DetailModal";
 
-const Body = ({ users, onHandleDeleteUser }) => {
+const SearchResults = ({ users, onHandleDeleteUser }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [showModal, setShowModal] = useState(false);
   const [showModalDetail, setShowModalDetail] = useState(false);
@@ -116,7 +116,7 @@ const Body = ({ users, onHandleDeleteUser }) => {
           />
         </Card.Body>
       </Card>
-      <DeleteConfirmationModal
+      <DeleteModal
         show={showModal}
         onHide={handleCloseModal}
         userToDelete={userToDelete}
@@ -131,4 +131,4 @@ const Body = ({ users, onHandleDeleteUser }) => {
   );
 };
 
-export default Body;
+export default SearchResults;

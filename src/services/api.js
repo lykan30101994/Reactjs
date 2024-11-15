@@ -27,7 +27,6 @@ export const callApi = async (url, method, data = null) => {
       throw error;
     }
   };
-  
 
   export const deleteApi = async (url) => {
     return await callApi(url, 'DELETE');
