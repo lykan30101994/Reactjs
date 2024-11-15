@@ -3,6 +3,9 @@ import Header from "./component/Header"; // Import Header
 import Body from "./component/Body"; // Import Body
 import Footer from "./component/Footer"; // Import Footer
 import "./UserList.css";
+import "../../../App.css"
+import { getApi } from "../../../Utils/callApi";
+
 
 function Users() {
   const [searchResults, setSearchResults] = useState([]);
@@ -16,12 +19,9 @@ function Users() {
     try {
       if(hasFetched.current) return;
       hasFetched.current  = true
-      const response = await fetch("http://localhost:5000/users");
-      if (response.ok) {
-        const data = await response.json();
-        setSearchResults(data);
-      } else {
-        console.error("Failed to fetch users");
+      const response = await getApi("http://localhost:5000/users");
+      if (response.length > 0) {
+        setSearchResults(response);
       }
     } catch (error) {
       console.error("Error fetching users:", error);

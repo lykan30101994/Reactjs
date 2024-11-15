@@ -1,30 +1,17 @@
 {
   "users": [
     {
-      "id": "d929",
-      "name": "11111111",
-      "email": "hongngoc.c83@gmail.com",
-      "password": "11111111",
-      "fullName": "Nguyễn Thị Hồng Ngọc",
-      "phone": "0963743801",
-      "address": "12",
-      "dateOfBirth": "2024-11-14",
-      "role": "admin",
-      "interest": "111111111111111",
-      "image": "blob:http://localhost:3000/44876fa2-b880-49e0-9e96-d1e8da5e10c5"
-    },
-    {
-      "id": "d733",
-      "name": "2222222222222",
-      "email": "hongngoc.c83@gmail.com",
-      "password": "1111111111111",
-      "fullName": "111111111111112",
-      "phone": "0963743801",
-      "address": "12",
-      "dateOfBirth": "2024-11-21",
-      "role": "admin",
-      "interest": "2222222222222",
-      "image": "blob:http://localhost:3000/6ed20da7-2700-433c-a743-629df2119228"
+      "id": "c2f5",
+      "name": "nhanht01",
+      "email": "nhan@gmail.com",
+      "password": "11111111111",
+      "fullName": "11111111111111111",
+      "phone": "111111111111111",
+      "address": "dfsgsafsdsfd",
+      "dateOfBirth": "2024-11-15",
+      "role": "user",
+      "interest": "2222222",
+      "image": "blob:http://localhost:3000/b797b9c5-904c-464b-b23a-393e1709f237"
     }
   ]
 }

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Button, Card, Modal } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { paginate } from "../../../../Utils/paginationUtils";
 import TableComponent from "../../../../Component/TableComponent";
 import PaginationComponent from "../../../../Component/Pagination";
 import DeleteConfirmationModal from "./DeleteConfirmationModal";
+import DetailModal from "./DetailModal";
 
 const Body = ({ users, onHandleDeleteUser }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -44,12 +45,10 @@ const Body = ({ users, onHandleDeleteUser }) => {
     { label: "Delete", variant: "danger", icon: <FaTrash /> },
   ];
 
-  // Handle page change for pagination
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  // Handle action click (View/Edit/Delete)
   const handleActionClick = (action, row) => {
     if (action.label === "Delete") {
       setUserToDelete(row);
@@ -69,11 +68,10 @@ const Body = ({ users, onHandleDeleteUser }) => {
           method: "DELETE",
         }
       );
-      console.log(response);
       if (response.ok) {
         setShowModal(false);
-        onHandleDeleteUser(userToDelete.id)
         setUserToDelete(null);
+        onHandleDeleteUser(userToDelete.id)
       } else {
         console.error("Failed to delete user");
       }
@@ -118,70 +116,17 @@ const Body = ({ users, onHandleDeleteUser }) => {
           />
         </Card.Body>
       </Card>
-
       <DeleteConfirmationModal
         show={showModal}
         onHide={handleCloseModal}
         userToDelete={userToDelete}
         onDelete={handleDelete}
       />
-      {/* User details modal */}
-      <Modal
+      <DetailModal 
         show={showModalDetail}
         onHide={() => setShowModalDetail(false)}
-        centered
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>User Details</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {userToDetail && (
-            <div className="user-detail">
-              <div className="user-avatar">
-                <img
-                  src={userToDetail.image}
-                  alt={userToDetail.name}
-                  style={{
-                    width: "100px",
-                    height: "100px",
-                    borderRadius: "50%",
-                    objectFit: "cover",
-                  }}
-                />
-              </div>
-              <div className="user-info">
-                <h4>{userToDetail.name}</h4>
-                <p>
-                  <strong>Email:</strong> {userToDetail.email}
-                </p>
-                <p>
-                  <strong>Full Name:</strong> {userToDetail.fullName}
-                </p>
-                <p>
-                  <strong>Phone:</strong> {userToDetail.phone}
-                </p>
-                <p>
-                  <strong>Address:</strong> {userToDetail.address}
-                </p>
-                <p>
-                  <strong>Date of Birth:</strong> {userToDetail.dateOfBirth}
-                </p>
-                <p>
-                  <strong>Role:</strong> {userToDetail.role}
-                </p>
-                <p>
-                  <strong>Interest:</strong> {userToDetail.interest}
-                </p>
-              </div>
-            </div>
-          )}
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowModalDetail(false)}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
+        userToDetail={userToDetail}
+      />
     </div>
   );
 };
