@@ -1,5 +1,5 @@
 import React from 'react';
-import CreateUser from './component/UserRegist'; // Import Header
+import CreateUser from './component/UserRegist';
 import '../../styles/Users/UserCreatePage.css'
 
 function UserRegist() {

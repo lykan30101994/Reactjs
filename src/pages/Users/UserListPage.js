@@ -19,9 +19,7 @@ function UserListPage() {
       if(hasFetched.current) return;
       hasFetched.current  = true
       const response = await getApi("http://localhost:5000/users");
-      console.log(response)
       if (response.length > 0) {
-        
         setSearchResults(response);
       }
     } catch (error) {

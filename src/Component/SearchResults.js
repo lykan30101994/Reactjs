@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { paginate } from "../utils/paginationUtils.js";
 import TableComponent from "./TableComponent.js";
 import PaginationComponent from "./Pagination.js";
-import DeleteModal from "./common/DeleteModal";
-import DetailModal from "./common/DetailModal";
+import DeleteModal from "./common/DeleteModal.js";
+import DetailModal from "./common/DetailModal.js";
 
 const SearchResults = ({ users, onHandleDeleteUser }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -56,6 +56,8 @@ const SearchResults = ({ users, onHandleDeleteUser }) => {
     } else if (action.label === "Details") {
       setUserToDetail(row);
       setShowModalDetail(true);
+    } else {
+      navigate(`/users/edit/${row.id}`)
     }
   };
 

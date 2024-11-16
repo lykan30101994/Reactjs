@@ -246,6 +246,19 @@
       "role": "user",
       "interest": "2222222",
       "image": "blob:http://localhost:3000/b797b9c5-904c-464b-b23a-393e1709f237"
+    },
+    {
+      "name": "nhanht",
+      "email": "nhanht@gmail.com",
+      "password": "11111111111",
+      "fullName": "Nguyễn Thị Hồng Ngọc",
+      "phone": "0963743801",
+      "address": "12",
+      "dateOfBirth": "2024-11-16",
+      "role": "admin",
+      "interest": "Thể thao1234443333",
+      "image": "blob:http://localhost:3000/2f7a593f-465c-4656-b991-bc761d525f39",
+      "id": "2349"
     }
   ]
 }

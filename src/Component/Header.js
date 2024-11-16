@@ -1,23 +1,25 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
-import '../styles/common/Header.css';  // Tạo file CSS riêng cho header nếu cần
+import React from "react";
+import { useLocation, useParams } from "react-router-dom";
+import "../styles/common/Header.css";
 
 const Header = () => {
   const location = useLocation();
+  const { id } = useParams();
 
-  // Lấy tên màn hình từ URL, hoặc bạn có thể dùng logic khác tùy vào route
-  const getTitle = () => {
-    switch(location.pathname) {
-      case '/users':
-        return 'User List';
-      case '/users/register':
-        return 'User Registration';
-      case '/category':
-        return 'Category List';
-      case '/product':
-        return 'Product List';
+  const getTitle = () => { 
+    switch (location.pathname) {
+      case "/users":
+        return "User List";
+      case "/create-user":
+        return "User Registration";
+      case `/users/edit/${id}`:
+        return id ? `Edit User (ID: ${id})` : "Edit User";
+      case "/category":
+        return "Category List";
+      case "/product":
+        return "Product List";
       default:
-        return 'Home';  // Mặc định
+        return "Home";
     }
   };
 
