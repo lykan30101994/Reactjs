@@ -9,6 +9,7 @@
   box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   border-bottom: 1px solid #ddd;
+  margin-bottom: 0px !important;
 }
 
 .breadcrumb h1 {

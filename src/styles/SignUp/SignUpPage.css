@@ -1,0 +1,63 @@
+/* SignUpPage.css */
+.signup-container {
+    height: 100vh;
+    position: relative;
+    background: url('https://source.unsplash.com/1600x900/?shopping') no-repeat center center/cover;
+  }
+  
+  .signup-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4); /* Màu đen với độ mờ 40% */
+    z-index: 1;
+  }
+  
+  .signup-card {
+    background-color: rgba(255, 255, 255, 0.85); /* Light white background */
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+    z-index: 2; /* Đảm bảo rằng card ở trên lớp phủ */
+  }
+  
+  .signup-card h2 {
+    font-size: 1.8rem;
+    color: #333;
+  }
+  
+  .signup-card .form-control {
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 1rem;
+  }
+  
+  .signup-card .btn {
+    font-size: 1.1rem;
+    padding: 12px;
+    background-color: #ff6347; /* Tomato color */
+    border: none;
+    border-radius: 10px;
+  }
+  
+  .signup-card .btn:hover {
+    background-color: #ff4500;
+  }
+  
+  .signup-card .invalid-feedback {
+    font-size: 0.875rem;
+    color: #dc3545;
+  }
+  
+  .signup-card small a {
+    color: #007bff;
+  }
+  
+  .signup-card small a:hover {
+    text-decoration: underline;
+  }
+  
